@@ -7,10 +7,8 @@ int main() {
 	printf("Enter three numbers(separated by a space): ");
 	scanf_s("%d %d %d", &x, &y, &z);
 
-	mean = (abs(x) + abs(y) + abs(z)) / 3.0;
-
+	mean = (x * x + y * y + z * z) / 3.0;
 
 	printf("Mean is : %.2f", mean);
-
 	return 0;
 }
