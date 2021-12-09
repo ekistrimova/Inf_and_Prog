@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-double sortInsert(int* numbers, int size) {
+double sortInsert(int* numbers, int size) {  // сортировка вставками O(n^2)
     int temp;
     double swaps = 0;
     for (int i = 1; i < size; i++)
@@ -15,42 +15,32 @@ double sortInsert(int* numbers, int size) {
     return swaps;
 }
 
-void shiftDown(int* numbers, int root, int bottom) {
-    int maxChild;
-    int done = 0;
-    while ((root * 2 <= bottom) && (!done)) {
-        if (root * 2 == bottom)
-            maxChild = root * 2;
-        else if (numbers[root * 2] > numbers[root * 2 + 1])
-            maxChild = root * 2;
-        else
-            maxChild = root * 2 + 1;
-        if (numbers[root] < numbers[maxChild]) {
-            int temp = numbers[root];
-            numbers[root] = numbers[maxChild];
-            numbers[maxChild] = temp;
-            root = maxChild;
-        }
-        else
-            done = 1;
+void merge(int* list, int start, int end, int* swaps) {  // само слияние
+    int k = start;
+    int j = start + (end - start) / 2;
+    int mid = j;
+    int* temp = (int*)malloc((end - start) * sizeof(int));
+    for (int i = 0; i < end - start; i++) {
+        if (list[k] < list[j] && k < mid || j == end) temp[i] = list[k++];
+        else temp[i] = list[j++];
+        *swaps += 1;
     }
+    for (int i = start; i < end; i++) list[i] = temp[i - start];
+    free(temp);
 }
 
-int sortHeap(int* numbers, int size) {
+int sortMerge(int* list, int start, int end) {  // сортировка слиянием O(nlogn)
     int swaps = 0;
-    for (int i = (size / 2); i >= 0; i--)
-        shiftDown(numbers, i, size - 1);
-    for (int i = size - 1; i >= 1; i--) {
-        int temp = numbers[0];
-        numbers[0] = numbers[i];
-        numbers[i] = temp;
-        swaps++;
-        shiftDown(numbers, 0, i - 1);
+    if ((end - start) <= 1) return 1;
+    else {
+        sortMerge(list, start, start + (end - start) / 2);
+        sortMerge(list, start + (end - start) / 2, end);
+        merge(list, start, end, &swaps);
     }
     return swaps;
 }
 
-int sortHoare(int* numbers, int first, int last) {
+int sortHoare(int* numbers, int first, int last) {  // быстрая сортировка O(nlogn) в лучшем / O(n^2) в худшем
     int swaps = 0;
     int i = first, j = last, x = numbers[(first + last) / 2];
     do {
@@ -74,7 +64,7 @@ int sortHoare(int* numbers, int first, int last) {
     return swaps;
 }
 
-void genNumbers(int* numbers, int size, int x, int y) {
+void genNumbers(int* numbers, int size, int x, int y) {  // генерация массива чисел
     for (int i = 0; i < size; i++)
         numbers[i] = x + rand() % (y - x + 1);
 }
@@ -85,11 +75,11 @@ int main() {
     int* numbers = NULL;
     int size = 0;
     double swaps = 0;
-    printf("Enter amount of numbers: ");
+    printf("Enter amount of numbers: ");  // количество чисел
     scanf_s("%d", &size);
     numbers = (int*)malloc(size * sizeof(int));
     int x, y;
-    printf("Enter range of numbers (from x to y included): ");
+    printf("Enter range of numbers (from x to y included): ");  // диапазон чисел
     scanf_s("%d %d", &x, &y);
 
     genNumbers(numbers, size, x, y);
@@ -100,9 +90,9 @@ int main() {
 
     genNumbers(numbers, size, x, y);
     time = clock();
-    swaps = sortHeap(numbers, size);
+    swaps = sortMerge(numbers, 0, size);
     time = clock() - time;
-    printf("sortHeap: %.2fs, swaps: %.0lf\n", time / 1000, swaps);
+    printf("sortMerge: %.2fs, swaps: %.0lf\n", time / 1000, swaps);
 
     genNumbers(numbers, size, x, y);
     time = clock();
