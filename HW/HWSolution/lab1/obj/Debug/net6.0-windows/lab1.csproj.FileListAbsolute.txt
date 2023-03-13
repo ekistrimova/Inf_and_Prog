@@ -1,0 +1,17 @@
+C:\Users\T1625\source\repos\lab1\lab1\bin\Debug\net6.0-windows\lab1.exe
+C:\Users\T1625\source\repos\lab1\lab1\bin\Debug\net6.0-windows\lab1.deps.json
+C:\Users\T1625\source\repos\lab1\lab1\bin\Debug\net6.0-windows\lab1.runtimeconfig.json
+C:\Users\T1625\source\repos\lab1\lab1\bin\Debug\net6.0-windows\lab1.dll
+C:\Users\T1625\source\repos\lab1\lab1\bin\Debug\net6.0-windows\lab1.pdb
+C:\Users\T1625\source\repos\lab1\lab1\obj\Debug\net6.0-windows\lab1.csproj.AssemblyReference.cache
+C:\Users\T1625\source\repos\lab1\lab1\obj\Debug\net6.0-windows\lab1.Form1.resources
+C:\Users\T1625\source\repos\lab1\lab1\obj\Debug\net6.0-windows\lab1.csproj.GenerateResource.cache
+C:\Users\T1625\source\repos\lab1\lab1\obj\Debug\net6.0-windows\lab1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\T1625\source\repos\lab1\lab1\obj\Debug\net6.0-windows\lab1.AssemblyInfoInputs.cache
+C:\Users\T1625\source\repos\lab1\lab1\obj\Debug\net6.0-windows\lab1.AssemblyInfo.cs
+C:\Users\T1625\source\repos\lab1\lab1\obj\Debug\net6.0-windows\lab1.csproj.CoreCompileInputs.cache
+C:\Users\T1625\source\repos\lab1\lab1\obj\Debug\net6.0-windows\lab1.dll
+C:\Users\T1625\source\repos\lab1\lab1\obj\Debug\net6.0-windows\refint\lab1.dll
+C:\Users\T1625\source\repos\lab1\lab1\obj\Debug\net6.0-windows\lab1.pdb
+C:\Users\T1625\source\repos\lab1\lab1\obj\Debug\net6.0-windows\lab1.genruntimeconfig.cache
+C:\Users\T1625\source\repos\lab1\lab1\obj\Debug\net6.0-windows\ref\lab1.dll
