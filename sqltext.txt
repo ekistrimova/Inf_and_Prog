@@ -1,0 +1,11 @@
+SELECT date, 
+       prod, 
+       prod - LAG(prod) OVER (ORDER BY date) AS abpr1,
+       prod - (SELECT prod FROM dzen ORDER BY dzen ASC LIMIT  1) AS abpr2,
+       ROUND((prod / LAG(prod) OVER (ORDER BY date)) * 100) AS tempr1,
+ROUND((prod / (SELECT prod FROM dzen ORDER BY dzen ASC LIMIT  1)) * 100) AS tempr2,
+ROUND((prod / LAG(prod) OVER (ORDER BY date)) * 100) - 100 AS temppr1,
+ROUND((prod / (SELECT prod FROM dzen ORDER BY dzen ASC LIMIT  1)) * 100) - 100 AS temppr2,
+ROUND(prod / ROUND((prod / LAG(prod) OVER (ORDER BY date)) * 100), 2) AS oneper
+FROM dzen
+ORDER BY date;
