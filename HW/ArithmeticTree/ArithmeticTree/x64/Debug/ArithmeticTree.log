@@ -1,0 +1,3 @@
+﻿  ArithmeticTree.cpp
+C:\Users\ekist\Documents\Учёба\2 курс\Усова\ArithmeticTree\ArithmeticTree\ArithmeticTree.h(148,19): warning C4244: return: преобразование "double" в "int", возможна потеря данных
+  ArithmeticTree.vcxproj -> C:\Users\ekist\Documents\Учёба\2 курс\Усова\ArithmeticTree\x64\Debug\ArithmeticTree.exe
