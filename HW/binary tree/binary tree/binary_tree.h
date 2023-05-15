@@ -23,7 +23,7 @@ public:
 		root = nullptr;
 	}
 
-	void insert(int value) {
+	void insert(int value) {   // метод вставки в дерево
 		Node* current = root;
 		if (root == nullptr)
 			root = new Node(value);
@@ -43,54 +43,40 @@ public:
 		}
 	}
 
-	void remove(int value) {
-		Node* current = root;
-		Node* parent = NULL;
-		while (current && current->root_data != value)
-		{
-			parent = current;
-			if (current->root_data > value)
-			{
-				current = current->left_child;
-			}
-			else
-			{
-				current = current->right_child;
-			}
-		}
-		if (!current)
-			return;
-		if (current->left_child == NULL)
-		{
-			// Вместо curr подвешивается его правое поддерево
-			if (parent && parent->left_child == current)
-				parent->left_child = current->right_child;
-			if (parent && parent->right_child == current)
-				parent->right_child = current->right_child;
-			delete current;
-			return;
-		}
-		if (current->right_child == NULL)
-		{
-			// Вместо curr подвешивается его левое поддерево
-			if (parent && parent->left_child == current)
-				parent->left_child = current->left_child;
-			if (parent && parent->right_child == current)
-				parent->right_child = current->left_child;
-			delete current;
-			return;
-		}
-		// У элемента есть два потомка, тогда на место элемента поставим
-		// наименьший элемент из его правого поддерева
-		Node* replace = current->right_child;
-		while (replace->left_child)
-			replace = replace->left_child;
-		int replace_value = replace->root_data;
-		remove(replace_value);
-		current->root_data = replace_value;
+	void remove(int value) { // метод который принимает указатель на узел и значение которое удаляется
+		root = removeNode(root, value);
 	}
 
-	bool find(int value) {
+	Node* removeNode(Node* node, int value) { // метод удаление узла
+		if (node == nullptr) {
+			return nullptr;
+		}
+		else if (value < node->root_data) {
+			node->left_child = removeNode(node->left_child, value);
+		}
+		else if (value > node->root_data) {
+			node->right_child = removeNode(node->right_child, value);
+		}
+		else {
+			if (node->left_child == nullptr && node->right_child == nullptr) {
+				delete node;
+				return nullptr;
+			}
+			else if (node->left_child == nullptr) {
+				Node* temp = node->right_child;
+				delete node;
+				return temp;
+			}
+			else if (node->right_child == nullptr) {
+				Node* temp = node->left_child;
+				delete node;
+				return temp;
+			}
+		}
+		return node;
+	}
+
+	bool find(int value) { // метод поиска
 		Node* current = root;
 		while (current && current->root_data != value)
 		{
@@ -102,7 +88,7 @@ public:
 		return current != NULL;
 	}
 
-	void print_tree(Node* current) {
+	void print_tree(Node* current) { // вывод дерева
 		if (current) {
 			print_tree(current->left_child);
 			cout << current->root_data << " ";
